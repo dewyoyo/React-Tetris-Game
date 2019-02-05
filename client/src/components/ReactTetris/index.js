@@ -361,7 +361,7 @@ const createBlocks = ary => (
   ary.map(
     (item, index) => (
       <Block color={item.color} key={index}>
-        {item.count}
+        {/* {item.count} */}
       </Block>
     )
   )
