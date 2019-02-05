@@ -8,7 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    width: calc(50px * 12 + 2px);
+    width: calc(20px * 12 + 2px);
   }
   
   .App .block {
@@ -17,26 +17,8 @@
     box-sizing: border-box;
     font-size: 1em;
     font-weight: bold;
-    height: 52px;
-    line-height: 52px;
+    height: 20px;
+    line-height: 20px;
     text-align: center;
-    width: 50px;
+    width: 20px;
   }
-  
-  .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-  
-  .count {
-    animation: logo-spin infinite 1s linear;
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
