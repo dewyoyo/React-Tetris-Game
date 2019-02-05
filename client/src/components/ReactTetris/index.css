@@ -8,12 +8,12 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    width: calc(20px * 12 + 2px);
+    width: calc(20px * 12 + 1px);
   }
   
   .App .block {
-    border-radius: 3px;
-    border: 1px solid #000;
+    /* border-radius:2px; */
+    border: 1px solid darkgray;
     box-sizing: border-box;
     font-size: 1em;
     font-weight: bold;
