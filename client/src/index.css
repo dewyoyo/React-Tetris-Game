@@ -1,0 +1,17 @@
+html, body {
+    background: #F5F5F5;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.notFound {
+    margin-top: 75px;
+    text-align: center;
+}
+
+    .notFound img {
+        height: 250px;
+        width: 300px;
+        margin-top: 25px;
+    }

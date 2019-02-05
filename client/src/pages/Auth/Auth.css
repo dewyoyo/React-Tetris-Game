@@ -1,0 +1,29 @@
+.authBox {
+    padding-top: 75px;
+    margin: 0 auto;
+    width: 300px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.authBox   .loginTitle {
+        text-align: center;
+    }
+
+    .authBox    .signupLink {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .authBox   .title-font {
+        font-family: 'Concert One', cursive;
+    }
+
+    .authBox   #loginBtn {
+        background: #1E90FF;
+        font-family: 'Prosto One', cursive;
+        color: #F5F5F5;
+        border: none;
+        font-size: 1.2em;
+    }
+
+
