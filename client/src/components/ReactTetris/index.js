@@ -3,6 +3,7 @@ import _ from 'lodash';
 import fp from 'lodash/fp';
 import * as keyboard from 'keyboard-handler';
 import './index.css';
+import API from "../../utils/API";
 
 // configuration
 let score = 0;
@@ -312,7 +313,7 @@ const downKey = ({ bgPanel, toolPanel }) => {
   const overlap = isBottom(toolPanel) || isOverlap(bgPanel, downPanel(toolPanel));
   const newBgPanel = overlap ? assignPanel({ bgPanel, toolPanel }) : bgPanel;
   const newToolPanel = overlap ? createRandomToolPanel(panelList, newBgPanel) : downPanel(toolPanel);
-  const nextToolPanel = overlap ? createRandomToolPanel(panelList, newBgPanel) : downPanel(toolPanel);
+
 
   // console.log(assignPanel({ bgPanel, toolPanel }));
   return {
@@ -388,13 +389,18 @@ const Block = props => (
 );
 const Blocks = props => (createBlocks(props.window));
 
-class App extends Component {
+
+
+
+export default class App extends Component {
+// class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       bgPanel: createPanel(),
       toolPanel: createRandomToolPanel(panelList),
-      nexttoolPanel: createRandomToolPanel(panelList),
+      username: "",
+      loggedIn: false,
       totalScore: 0,
       gameOver: false
     };
@@ -423,6 +429,24 @@ class App extends Component {
     });
   }
 
+
+  componentDidMount() {
+    processKey(32,{});
+    API.isLoggedIn().then(user => {
+        // console.log(user);
+        if (user.data.loggedIn) {
+            this.setState({
+                loggedIn: true,
+                username: user.data.user.username
+            });
+        }
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+
+
   render() {
     return (
       <div className="container">
@@ -441,11 +465,27 @@ class App extends Component {
                 </div>
               </td>
               <td>
+                
                 <div className="data-Info">
-                  <h3>Scores: {score}</h3>
-                  <h3>Next: </h3>
+                  <p>Scores: {score}</p>
+                  <p>Next: </p>
+                  <p>{this.state.username}</p>
+                </div>
+
+                
+                
+                <div className="data-instruction">
+                  <p>Start game: Space bar</p>
+                  <p>Pause     : Space bar</p>
+                  <p>Move left : leftKey </p>
+                  <p>Move right: rightKey</p>
+                  <p>Move down : downKey </p>
+                  <p>rotate    : upKey </p>
 
                 </div>
+
+              
+                
               </td>
               
             </tr>
@@ -472,4 +512,4 @@ class App extends Component {
   }
 }
 
-export default App;
+// export default App;

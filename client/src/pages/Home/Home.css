@@ -1,11 +1,11 @@
 .homeBox {
     margin: 0 auto;
-    margin-top: 20vh;
+    margin-top: 1rem;
     /* width: 300px; */
     font-family: 'Concert One', cursive;
 }
 
-    .homeBox  button {
-        font-size: 1.3em;
-        font-weight: bold;
-    }
+.homeBox  button {
+    font-size: 1.3em;
+    /* font-weight: bold; */
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Field from '../../components/Field'
+import ReactTetris from '../../components/ReactTetris'
 import API from "../../utils/API";
 
 import "./Home.css";
@@ -7,6 +7,7 @@ import "./Home.css";
 class Home extends Component {
 
   state = {
+    user: "",
     loggedIn: false,
   };
 
@@ -20,6 +21,7 @@ class Home extends Component {
     API.isLoggedIn().then(user => {
       if (user.data.loggedIn) {
         this.setState({
+          user: user.data.user,
           loggedIn: true
         });
       }
@@ -32,7 +34,10 @@ class Home extends Component {
     return (
       <div className="homeBox">
 
-        <Field />
+        <ReactTetris
+          username={this.state.username}
+          loggedIn={this.state.loggedIn}
+        />
       </div>
     );
   }

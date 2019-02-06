@@ -3,39 +3,47 @@ const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
-  username: {
-      type: String,
-      unique: true,
-      required: [true, "username is required"]
-  },
-  password: {
-      type: String,
-      unique: false,
-      validate: {
-        validator: function(v) {
-          return /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(v);
+    username: {
+        type: String,
+        unique: true,
+        required: [true, "username is required"]
+    },
+    password: {
+        type: String,
+        unique: false,
+        validate: {
+            validator: function (v) {
+                return /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(v);
+            },
+            message: props => `${props.value} is not a valid password`
         },
-        message: props => `${props.value} is not a valid password`
-      },
-      required: [true, "password is required"]
-  },
-  admin: {
-    type: Boolean,
-    unique: false,
-    required: true,
-    default: false
-},
-  createdAt: {
-      type: Date,
-      default: Date.now()
-  }
+        required: [true, "password is required"]
+    },
+    admin: {
+        type: Boolean,
+        unique: false,
+        required: true,
+        default: false
+    },
+    highstScore: {
+        type: Number,
+        default: 0
+    },
+    lastUpdated: {
+        type: Date,
+        default: Date.now()
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
-usersSchema.methods.generateHash = function(password) {
+usersSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 
-usersSchema.methods.validPassword = function(password, encrypted) {
+usersSchema.methods.validPassword = function (password, encrypted) {
     return bcrypt.compareSync(password, encrypted);
 }
 

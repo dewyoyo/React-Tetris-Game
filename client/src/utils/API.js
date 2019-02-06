@@ -24,6 +24,11 @@ export default {
   // logs out the user
   logout: function() {
     return axios.get("/api/users/logout")
+  },
+
+  // save the user's score
+  savescore: function(scoreInfo) {
+    return axios.post("/api/users/savescore", scoreInfo);
   }
 
 };

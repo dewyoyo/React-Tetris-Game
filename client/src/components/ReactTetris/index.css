@@ -3,10 +3,11 @@ body{
   /* background-repeat: repeat; */
 }
 .container {
-  
+  font-family: 'Josefin Sans', sans-serif;
   margin: auto;
   position: relative;
-  padding : 2rem;
+  padding : 0 2rem;
+
   /* width: 30rem; */
     /* color: yellowgreen; */
   }
@@ -28,7 +29,7 @@ body{
     border: 1px solid darkgray;
     box-sizing: border-box;
     font-size: 1em;
-    font-weight: bold;
+    /* font-weight: bold; */
     height: 20px;
     line-height: 20px;
     text-align: center;
@@ -74,15 +75,23 @@ body{
   }
 
   h3 {
-    width: 5rem;
+    /* width: 5rem; */
     vertical-align: top;
     padding: 0;
   }
   .data-Info{
     width: 20rem;
+    font-size: 1.5rem;
     /* text-align: auto; */
     vertical-align: top;
     padding: 0 2rem;
     color: yellowgreen;
   }
-  
+  .data-instruction {
+    width: 20rem;
+    font-size: 1.1rem;
+    /* text-align: auto; */
+    vertical-align: top;
+    padding: 0 2rem;
+    color: white;
+  }

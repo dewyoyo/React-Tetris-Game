@@ -67,6 +67,15 @@ router.get("/profile", authMiddleware.isLoggedIn, function(req, res, next) {
   });
 });
 
+// /api/users/savescore
+// if the user is logged in, this route sends the user information to the front end
+router.post("/savescore", authMiddleware.logoutUser, function(req, res, next) {
+  res.json("User logged out successfully");
+});
+
+
+
+
 // /api/users/logout
 // logs out the user
 router.get("/logout", authMiddleware.logoutUser, function(req, res, next) {
