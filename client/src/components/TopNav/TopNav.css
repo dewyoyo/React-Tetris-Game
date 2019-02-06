@@ -1,9 +1,10 @@
 .navbar {
-    background: #1E90FF;
-    box-shadow: 0 3px 10px #2F4F4F;
+    background: #39374d;
+    box-shadow: 0 3px 10px #2c2c2c;
     font-family: 'Josefin Sans', sans-serif;
     text-align : center;
     height: 50px;
+    color: #F5F5F5
 }
 
 .navbar   a.titleFont {
@@ -11,7 +12,7 @@
     color: #F5F5F5;
     width: 200px;
     float: left;
-    margin: 20px 0;
+    margin: 1rem;
 }
 
 .navbar  a.titleFont:hover {
@@ -21,9 +22,10 @@
 
 .navbar a.nav-link {
     font-size: 1.2em;
-    width: 100px;
+    width: 20rem;
     float: right;
     margin: 20px 5px;
+    color: #F5F5F5;
 }
 
 .navbar  .light-text {
@@ -31,3 +33,8 @@
 }
 
 
+.navbar-brand {
+    color: #F5F5F5;
+    float: right;
+    margin: 1rem;
+}

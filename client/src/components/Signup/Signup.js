@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 import { Link } from "react-router-dom";
+import './Signup.css';
 
 class Signup extends Component {
     state = {
@@ -8,7 +8,7 @@ class Signup extends Component {
         validPassword: false,
         confirmPassword: false
     }
-    
+
     componentDidUpdate() {
         this.validatePassword();
         this.confirmPassword();
@@ -40,7 +40,6 @@ class Signup extends Component {
             this.setState({
                 validPassword: false,
             });
-            // alert("Password should have at least 8 characters, 1 capital & 1 number");
         }
     }
 
@@ -59,36 +58,56 @@ class Signup extends Component {
 
     render() {
         return (
-            <div>
+            <div className="loginBox">
                 <h2 className="loginTitle title-font">Signup</h2>
                 <hr />
-                {this.props.message?(
-                    <Alert className="animated fadeIn" color="danger">{this.props.message}</Alert>
-                ): (<></>)}
-                <Form>
-                    <FormGroup>
-                        <Label for="username">Username</Label>
-                        <Input type="text" name="username" id="data-username" placeholder="username" value={this.props.username} onChange={this.props.handleInputChange} valid={this.state.validUsername} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="password">Password</Label>
-                        <Input type="password" name="password" id="data-password" placeholder="password" value={this.props.password} onChange={this.props.handleInputChange} valid={this.state.validPassword} />
-                        <FormText>Password should have at least 8 characters, 1 capital & 1 number</FormText>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="confirmPassword">Confirm Password</Label>
-                        <Input type="password" name="confirmPassword" id="data-confirmPassword" placeholder="confirm password" value={this.props.confirmPassword} onChange={this.props.handleInputChange} valid={this.state.confirmPassword} />
-                    </FormGroup>
+                {this.props.message ? (
+                    <h4 className="password-warning">{this.props.message}</h4>
+                ) : (<></>)}
+
+
+                <form>
+                    <p>Username: {this.props.username}</p>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={this.props.username}
+                        onChange={this.props.handleInputChange}
+                        valid={this.state.validUsername}
+                    />
+                    <p>Password: {this.state.password}</p>
+                    <h5 className="password-warning">Password should have at least 8 characters, 1 capital & 1 number</h5>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={this.props.password}
+                        onChange={this.props.handleInputChange}
+                        valid={this.state.validPassword}
+                    />
+                    <p>Confirm Password: {this.state.password}</p>
+                    <input
+                        type="password"
+                        placeholder="confirm password"
+                        name="confirmPassword"
+                        value={this.props.confirmPassword}
+                        onChange={this.props.handleInputChange}
+                        valid={this.state.confirmPassword}
+                    />
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
-                        <Button onClick={this.props.handleSignup} color="success" block>Signup</Button>
+                        <button onClick={this.props.handleSignup} color="success" block>Signup</button>
                     ) : (
-                        <Button onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
-                    )}
+                            <button onClick={this.props.handleSignup} color="danger" block disabled>Signup</button>
+                        )}
                     <p className="signupLink">
                         <Link to="/login">already have an account?  Sign in here</Link>
                     </p>
-                </Form>
+
+
+                </form>
+
             </div>
         );
     }

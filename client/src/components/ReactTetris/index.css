@@ -1,14 +1,21 @@
+body{
+  background-image: url("../../Img/starrynight.gif");
+}
 .container {
-    position: relative;
+  
+  margin: 50px;
+  position: relative;
+    /* color: yellowgreen; */
   }
   
   .App {
     align-items: flex-start;
-    background: white;
+    /* background: white; */
     display: flex;
     flex-wrap: wrap;
     margin: auto;
     width: calc(20px * 12 + 1px);
+    padding: 100px yellow;
     /* width : 50%; */
   }
   
@@ -22,13 +29,21 @@
     line-height: 20px;
     text-align: center;
     width: 20px;
+    padding: 5px stripe;
+  
   }
 
-  .div.info{
-    width: 200px;
-    margin: 0;
+
+  .td{
+    width: 100rem;
   }
-  .Info.h1{
-    width : 100px;
-    float: right;
+
+  .data-Info{
+    /* position: relative; */
+    width: 20rem;
+    text-align: auto;
+    padding: 2rem;
+    /* margin: 0 10rem 0 0; */
+    color: yellowgreen;
+    /* float: right; */
   }

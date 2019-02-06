@@ -1,29 +1,41 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { Link } from "react-router-dom";
+import './Login.css';
 
 function Login(props) {
     return (
+
         <div className="loginBox">
             <h2 className="loginTitle title-font">Login</h2>
-            <hr/>
+            <hr />
             {props.message ? (
-                <Alert className="animated fadeIn" color="danger">{props.message}</Alert>
+                <h4 className="password-warning">{props.message}</h4>
             ) : (<></>)}
-            <Form>
-                <FormGroup>
-                    <Label for="username">Username</Label>
-                    <Input type="text" name="username" id="username" placeholder="username" value={props.username} onChange={props.handleInputChange} />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="password">Password</Label>
-                    <Input type="password" name="password" id="password" placeholder="password" value={props.password} onChange={props.handleInputChange} />
-                </FormGroup>
-                <Button id="loginBtn" onClick={props.handleLogin} block>Login</Button>
+
+
+            <form>
+                <p>Username:</p>          
+                <input
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    value={props.username}
+                    onChange={props.handleInputChange}
+                />
+                <p>Password:</p>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={props.password}
+                    onChange={props.handleInputChange}
+                />
+                <button onClick={props.handleLogin}>Login</button>
                 <p className="signupLink">
                     <Link to="/signup">dont have an account?  Sign up here</Link>
                 </p>
-            </Form>
+            </form>
+
         </div>
     );
 }

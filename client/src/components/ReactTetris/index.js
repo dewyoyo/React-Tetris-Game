@@ -10,7 +10,7 @@ let score = 0;
 const CONFIG = {
   rows: 17,
   columns: 12,
-  color: 'grey',
+  color: "gray",
   scrollDownInterval: 700,
   count: 0,
   pause: false
@@ -426,10 +426,33 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <table className="game-plate">
+          <tbody>
+            <tr>
 
-        <div className="Info">
-          <h1>Scores: {score}</h1>
-          <h1>Next: </h1>
+              <td>
+                <div className="App">
+
+                  <Blocks window={getWindow({
+                    bgPanel: this.state.bgPanel,
+                    toolPanel: this.state.toolPanel
+                  })} />
+                </div>
+              </td>
+              <td>
+                <div className="data-Info">
+                  <h3>Scores: {score}</h3>
+                  <h3>Next: </h3>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        {/* <div className="data-Info">
+          <h3>Scores: {score}</h3>
+          <h3>Next: </h3>
         </div>
 
         <div className="App">
@@ -438,7 +461,7 @@ class App extends Component {
             bgPanel: this.state.bgPanel,
             toolPanel: this.state.toolPanel
           })} />
-        </div>
+        </div> */}
 
       </div>
     );
