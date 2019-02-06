@@ -3,27 +3,31 @@
     box-shadow: 0 3px 10px #2F4F4F;
     font-family: 'Josefin Sans', sans-serif;
     text-align : center;
+    height: 50px;
 }
-.navbar.data-login-box {
+
+.navbar   a.titleFont {
+    font-family: 'Prosto One', cursive;
+    color: #F5F5F5;
+    width: 200px;
+    float: left;
+    margin: 20px 0;
+}
+
+.navbar  a.titleFont:hover {
+    color: #F5F5F5;
+    font-weight: bold;
+}
+
+.navbar a.nav-link {
+    font-size: 1.2em;
+    width: 100px;
     float: right;
+    margin: 20px 5px;
 }
-    .navbar   a.titleFont {
-        font-family: 'Prosto One', cursive;
-        color: #F5F5F5;
-    }
 
-    .navbar  a.titleFont:hover {
-        color: #F5F5F5;
-        font-weight: bold;
-    }
-
-    .navbar a.nav-link {
-        font-size: 1.2em;
-        width: 100px;
-    }
-
-    .navbar  .light-text {
-        color: #F5F5F5
-    }
+.navbar  .light-text {
+    color: #F5F5F5
+}
 
 

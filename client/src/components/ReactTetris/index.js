@@ -5,6 +5,7 @@ import * as keyboard from 'keyboard-handler';
 import './index.css';
 
 // configuration
+let score = 0;
 
 const CONFIG = {
   rows: 17,
@@ -20,11 +21,11 @@ const CONFIG = {
 const getAry = (len, fn) => (
   _.range(len).map(() => (
     fn
-    ? (
-      _.isFunction(fn)
-      ? fn()
-      : fn )
-    : null)
+      ? (
+        _.isFunction(fn)
+          ? fn()
+          : fn)
+      : null)
   ));
 
 const createItem = () => ({ color: CONFIG.color });
@@ -66,6 +67,7 @@ const isOverlap = (bgPanel, toolPanel) => {
 
 const zipPanelItem = (bg, tool) => (isBlank(tool) ? bg : tool);
 const assignPanel = ({ bgPanel, toolPanel }) => {
+
   return convert2DimAry(
     _.zipWith(
       convert1DimAry(bgPanel),
@@ -133,8 +135,8 @@ const rotatePanel = (panel, moreSize = 2) => {
   panel.forEach((rows, rIndex) => (
     rows.forEach((item, cIndex) => (
       item.zeroPoint === true
-      ? zeroPoints.push(Object.assign(item, { row: rIndex, column: cIndex }))
-      : item
+        ? zeroPoints.push(Object.assign(item, { row: rIndex, column: cIndex }))
+        : item
     ))
   ));
 
@@ -153,11 +155,11 @@ const rotatePanel = (panel, moreSize = 2) => {
         endColumn: Math.max(keep.endColumn, zeroPoint.column)
       };
     }, {
-      startRow: 100,
-      startColumn: 100,
-      endRow: -1,
-      endColumn: -1
-    });
+        startRow: 100,
+        startColumn: 100,
+        endRow: -1,
+        endColumn: -1
+      });
 
   const newArea = zeroPoints.length === 1 ? {
     startRow: _.first(zeroPoints).row - moreSize,
@@ -181,64 +183,64 @@ const paint = (panel, posAry, color) => {
 
 const paintO = (panel) => {
   return paint(panel, [
-    {row: 0, column: 4, zeroPoint: true},
-    {row: 0, column: 5, zeroPoint: true},
-    {row: 1, column: 4, zeroPoint: true},
-    {row: 1, column: 5, zeroPoint: true}
+    { row: 0, column: 4, zeroPoint: true },
+    { row: 0, column: 5, zeroPoint: true },
+    { row: 1, column: 4, zeroPoint: true },
+    { row: 1, column: 5, zeroPoint: true }
   ], 'yellow');
 };
 
 const paintI = (panel) => {
   return paint(panel, [
-    {row: 0, column: 3},
-    {row: 0, column: 4, zeroPoint: true},
-    {row: 0, column: 5},
-    {row: 0, column: 6}
+    { row: 0, column: 3 },
+    { row: 0, column: 4, zeroPoint: true },
+    { row: 0, column: 5 },
+    { row: 0, column: 6 }
   ], 'lime');
 };
 
 const paintT = (panel) => {
   return paint(panel, [
-    {row: 0, column: 5},
-    {row: 1, column: 4},
-    {row: 1, column: 5, zeroPoint: true},
-    {row: 1, column: 6}
+    { row: 0, column: 5 },
+    { row: 1, column: 4 },
+    { row: 1, column: 5, zeroPoint: true },
+    { row: 1, column: 6 }
   ], 'pink');
 };
 
 const paintJ = (panel) => {
   return paint(panel, [
-    {row: 0, column: 6},
-    {row: 1, column: 4},
-    {row: 1, column: 5, zeroPoint: true},
-    {row: 1, column: 6}
+    { row: 0, column: 6 },
+    { row: 1, column: 4 },
+    { row: 1, column: 5, zeroPoint: true },
+    { row: 1, column: 6 }
   ], 'orange');
 };
 
 const paintL = (panel) => {
   return paint(panel, [
-    {row: 0, column: 4},
-    {row: 1, column: 4},
-    {row: 1, column: 5, zeroPoint: true},
-    {row: 1, column: 6}
+    { row: 0, column: 4 },
+    { row: 1, column: 4 },
+    { row: 1, column: 5, zeroPoint: true },
+    { row: 1, column: 6 }
   ], 'blue');
 };
 
 const paintS = (panel) => {
   return paint(panel, [
-    {row: 0, column: 4, zeroPoint: true},
-    {row: 0, column: 5},
-    {row: 1, column: 3},
-    {row: 1, column: 4}
+    { row: 0, column: 4, zeroPoint: true },
+    { row: 0, column: 5 },
+    { row: 1, column: 3 },
+    { row: 1, column: 4 }
   ], 'green');
 };
 
 const paintZ = (panel) => {
   return paint(panel, [
-    {row: 0, column: 3},
-    {row: 0, column: 4, zeroPoint: true},
-    {row: 1, column: 4},
-    {row: 1, column: 5}
+    { row: 0, column: 3 },
+    { row: 0, column: 4, zeroPoint: true },
+    { row: 1, column: 4 },
+    { row: 1, column: 5 }
   ], 'red');
 };
 
@@ -256,8 +258,9 @@ const getWindow = _.flow([assignPanel, convert1DimAry]);
 // make tool panel
 
 const createRandomToolPanel = (panelList, bgPanel) => {
-  const toolPanel = panelList[_.random(0, panelList.length -1)]();
+  const toolPanel = panelList[_.random(0, panelList.length - 1)]();
   const overlap = bgPanel ? isOverlap(bgPanel, toolPanel) : false;
+
   return overlap ? createPanel() : toolPanel;
 };
 
@@ -282,14 +285,14 @@ const leftKey = ({ bgPanel, toolPanel }) => {
   // console.log("overlap left,", overlap);
   return {
     bgPanel,
-    toolPanel:  overlap ? toolPanel : leftPanel(toolPanel)
+    toolPanel: overlap ? toolPanel : leftPanel(toolPanel)
   };
 };
 
 const upKey = ({ bgPanel, toolPanel }) => {
   const rotatedToolPanel = rotatePanel(toolPanel);
   const overlap = getColorCount(toolPanel) !== getColorCount(rotatedToolPanel) || isOverlap(bgPanel, rotatedToolPanel);
-  console.log("overlap rotate,", overlap);
+  // console.log("overlap rotate,", overlap);
   return {
     bgPanel,
     toolPanel: overlap ? toolPanel : rotatedToolPanel
@@ -309,6 +312,9 @@ const downKey = ({ bgPanel, toolPanel }) => {
   const overlap = isBottom(toolPanel) || isOverlap(bgPanel, downPanel(toolPanel));
   const newBgPanel = overlap ? assignPanel({ bgPanel, toolPanel }) : bgPanel;
   const newToolPanel = overlap ? createRandomToolPanel(panelList, newBgPanel) : downPanel(toolPanel);
+  const nextToolPanel = overlap ? createRandomToolPanel(panelList, newBgPanel) : downPanel(toolPanel);
+
+  // console.log(assignPanel({ bgPanel, toolPanel }));
   return {
     bgPanel: removeFullRow(newBgPanel),
     toolPanel: newToolPanel
@@ -344,6 +350,16 @@ const addEmptyRow = panel => {
   CONFIG.count += count;
   newPanel.unshift(...getEmptyRows(count));
   _.last(_.last(newPanel)).count = CONFIG.count;
+
+  //================ hjlee totalscore===
+  // console.log("addEmptyRow count: " + count);
+  // this.setState({
+  //   totalScore: this.state.totalScore + count
+  // });
+  // console.log("totalScore" + this.state.totalScore);
+  //================ hjlee totalscore===
+  score += (count + count) * 100;
+
   return newPanel;
 };
 
@@ -351,7 +367,7 @@ const removeFullRow = panel => {
   const newPanel = _.filter(_.cloneDeep(panel), (row) => (
     isNotFullRow(row)
   ));
-
+  // console.log("removeFullRow: " + newPanel.length);
   return addEmptyRow(newPanel);
 };
 
@@ -368,7 +384,7 @@ const createBlocks = ary => (
 );
 
 const Block = props => (
-  <div className="block" style={{backgroundColor: props.color}}>{props.children}</div>
+  <div className="block" style={{ backgroundColor: props.color }}>{props.children}</div>
 );
 const Blocks = props => (createBlocks(props.window));
 
@@ -377,7 +393,10 @@ class App extends Component {
     super(props);
     this.state = {
       bgPanel: createPanel(),
-      toolPanel: createRandomToolPanel(panelList)
+      toolPanel: createRandomToolPanel(panelList),
+      totalScore: 0,
+      gameOver: false,
+      timer: ""
     };
 
     this.state.timer = setInterval(() => {
@@ -392,6 +411,7 @@ class App extends Component {
     keyboard.keyPressed(e => {
       setTimeout(() => {
         this.setState((state) => {
+          // console.log(state);
           return isValidKey(e.which)
             ? processKey(e.which, {
               bgPanel: state.bgPanel,
@@ -406,12 +426,20 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+
+        <div className="Info">
+          <h1>Scores: {score}</h1>
+          <h1>Next: </h1>
+        </div>
+
         <div className="App">
+
           <Blocks window={getWindow({
             bgPanel: this.state.bgPanel,
             toolPanel: this.state.toolPanel
           })} />
         </div>
+
       </div>
     );
   }

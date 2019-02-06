@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     margin: auto;
     width: calc(20px * 12 + 1px);
+    /* width : 50%; */
   }
   
   .App .block {
@@ -21,4 +22,13 @@
     line-height: 20px;
     text-align: center;
     width: 20px;
+  }
+
+  .div.info{
+    width: 200px;
+    margin: 0;
+  }
+  .Info.h1{
+    width : 100px;
+    float: right;
   }

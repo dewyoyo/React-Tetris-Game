@@ -14,7 +14,7 @@ class Home extends Component {
     this.loggedIn();
   }
 
-  
+
 
   loggedIn = () => {
     API.isLoggedIn().then(user => {
@@ -32,9 +32,7 @@ class Home extends Component {
     return (
       <div className="homeBox">
 
-        {this.state.loggedIn ? (
-          <h1>LoggedIn</h1>
-        ) : (<><ReactTetris /></>)}
+        <ReactTetris />
       </div>
     );
   }

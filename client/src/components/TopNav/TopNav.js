@@ -2,19 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./TopNav.css";
 import API from "../../utils/API";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+import {    Navbar,    NavLink} from 'reactstrap';
 
 export default class Navigation extends Component {
 
@@ -57,7 +45,24 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/" className="titleFont"><i className="fas fa-key"></i> React Auth</NavbarBrand>
+                    <a href="/" className="titleFont"> React Tetris Game</a>
+                    <div className="data-login-box">
+                        {this.state.loggedIn ? (
+                            <>
+                                <NavLink onClick={this.logout}>Logout</NavLink>
+                            </>
+                        ) : (
+                                <>
+                                    <NavLink href="/login">login</NavLink>
+                                    <NavLink href="/signup">signup</NavLink>
+                                </>
+                            )}
+
+                    </div>
+
+
+
+                    {/* <NavbarBrand href="/" className="titleFont"><i className="fas fa-key"></i> React Auth</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -91,7 +96,7 @@ export default class Navigation extends Component {
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
-                    </Collapse>
+                    </Collapse> */}
                 </Navbar>
             </div>
         );
