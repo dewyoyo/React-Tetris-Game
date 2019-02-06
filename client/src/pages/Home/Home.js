@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactTetris from '../../components/ReactTetris';
+import Field from '../../components/Field'
 import API from "../../utils/API";
 
 import "./Home.css";
@@ -32,7 +32,7 @@ class Home extends Component {
     return (
       <div className="homeBox">
 
-        <ReactTetris />
+        <Field />
       </div>
     );
   }

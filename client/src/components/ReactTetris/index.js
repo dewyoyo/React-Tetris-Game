@@ -394,9 +394,9 @@ class App extends Component {
     this.state = {
       bgPanel: createPanel(),
       toolPanel: createRandomToolPanel(panelList),
+      nexttoolPanel: createRandomToolPanel(panelList),
       totalScore: 0,
-      gameOver: false,
-      timer: ""
+      gameOver: false
     };
 
     this.state.timer = setInterval(() => {
@@ -426,6 +426,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+
         <table className="game-plate">
           <tbody>
             <tr>
@@ -443,12 +444,15 @@ class App extends Component {
                 <div className="data-Info">
                   <h3>Scores: {score}</h3>
                   <h3>Next: </h3>
+
                 </div>
               </td>
-
+              
             </tr>
           </tbody>
         </table>
+
+        
 
         {/* <div className="data-Info">
           <h3>Scores: {score}</h3>

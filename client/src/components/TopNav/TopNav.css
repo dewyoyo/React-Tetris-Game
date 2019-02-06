@@ -4,13 +4,14 @@
     font-family: 'Josefin Sans', sans-serif;
     text-align : center;
     height: 50px;
-    color: #F5F5F5
+    color: #F5F5F5;
+    font-size: 1.5rem;
 }
 
 .navbar   a.titleFont {
     font-family: 'Prosto One', cursive;
     color: #F5F5F5;
-    width: 200px;
+    width: 21rem;
     float: left;
     margin: 1rem;
 }
@@ -21,7 +22,7 @@
 }
 
 .navbar a.nav-link {
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     width: 20rem;
     float: right;
     margin: 20px 5px;
