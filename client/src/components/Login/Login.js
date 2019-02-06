@@ -21,6 +21,7 @@ function Login(props) {
                     name="username"
                     value={props.username}
                     onChange={props.handleInputChange}
+                    autoFocus
                 />
                 <p>Password:</p>
                 <input

@@ -1,8 +1,8 @@
 .authBox {
-    padding-top: 75px;
+    padding: 75px 0;
     margin: 0 auto;
     width: 300px;
-    font-family: 'Concert One', cursive;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .authBox   .loginTitle {
@@ -14,13 +14,9 @@
         text-align: center;
     }
 
-    .authBox   .title-font {
-        font-family: 'Concert One', cursive;
-    }
-
     .authBox   #loginBtn {
         background: #1E90FF;
-        /* font-family: 'Prosto One', cursive; */
+        font-family: 'Prosto One', cursive;
         color: #F5F5F5;
         border: none;
         font-size: 2rem;

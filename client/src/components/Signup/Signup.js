@@ -74,7 +74,9 @@ class Signup extends Component {
                         name="username"
                         value={this.props.username}
                         onChange={this.props.handleInputChange}
-                        valid={this.state.validUsername}
+                        // valid={this.state.validUsername}
+                        autoFocus
+                        required
                     />
                     <p>Password: {this.state.password}</p>
                     <h5 className="password-warning">Password should have at least 8 characters, 1 capital & 1 number</h5>
@@ -84,7 +86,9 @@ class Signup extends Component {
                         name="password"
                         value={this.props.password}
                         onChange={this.props.handleInputChange}
-                        valid={this.state.validPassword}
+                        required
+                        // valid={this.state.validPassword}
+                        pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
                     />
                     <p>Confirm Password: {this.state.password}</p>
                     <input
@@ -93,13 +97,15 @@ class Signup extends Component {
                         name="confirmPassword"
                         value={this.props.confirmPassword}
                         onChange={this.props.handleInputChange}
-                        valid={this.state.confirmPassword}
+                        required
+                        // valid={this.state.confirmPassword}
+                        pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
                     />
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
-                        <button onClick={this.props.handleSignup} color="success" block>Signup</button>
+                        <button onClick={this.props.handleSignup} color="#45a049" block>Signup</button>
                     ) : (
-                            <button onClick={this.props.handleSignup} color="danger" block disabled>Signup</button>
+                            <button onClick={this.props.handleSignup} color="red" block disabled>Signup</button>
                         )}
                     <p className="signupLink">
                         <Link to="/login">already have an account?  Sign in here</Link>

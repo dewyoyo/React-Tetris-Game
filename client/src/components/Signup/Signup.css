@@ -32,7 +32,7 @@ input[type=text], select {
   
  button {
     width: 100%;
-    background-color: #4CAF50;
+    /* background-color: #4CAF50; */
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -41,6 +41,15 @@ input[type=text], select {
     cursor: pointer;
   }
   
-  button:hover {
+  /* button:hover {
     background-color: #45a049;
+  } */
+
+
+  input:invalid {
+    box-shadow: 0 0 5px 1px red;
+  }
+  
+  input:focus:invalid {
+    outline: none;
   }
