@@ -1,20 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
 import ReactTetris from "./components/ReactTetris";
 // import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 
-import { Container } from 'reactstrap';
-
 function App() {
   return (
       <Router>
         <div>
           <TopNav />
-          <Container>
+          <div className="container">
             <Switch>
               <Route exact path="/" component={ReactTetris} />
               <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
@@ -22,7 +19,7 @@ function App() {
               {/* <Route exact path="/profile" component={Profile} /> */}
               <Route component={NoMatch} />
             </Switch>
-          </Container>
+            </div>
         </div>
       </Router>
   );

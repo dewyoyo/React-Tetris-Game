@@ -2,7 +2,7 @@
     padding-top: 75px;
     margin: 0 auto;
     width: 300px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Concert One', cursive;
 }
 
 .authBox   .loginTitle {
@@ -20,10 +20,10 @@
 
     .authBox   #loginBtn {
         background: #1E90FF;
-        font-family: 'Prosto One', cursive;
+        /* font-family: 'Prosto One', cursive; */
         color: #F5F5F5;
         border: none;
-        font-size: 1.2em;
+        font-size: 2rem;
     }
 
 
