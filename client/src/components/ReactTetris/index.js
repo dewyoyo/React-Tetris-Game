@@ -123,7 +123,7 @@ const rotateRegion = (area, panel) => {
   _.range(area.startRow, area.endRow + 1).forEach((row) => {
     _.range(area.startColumn, area.endColumn + 1).forEach((column) => {
       const item = toAry.shift();
-      // const nop = _.isUndefined(newPanel[row]) || _.isUndefined(newPanel[row][column]) ? '' : newPanel[row][column] = _.cloneDeep(item);
+      const nop = _.isUndefined(newPanel[row]) || _.isUndefined(newPanel[row][column]) ? '' : newPanel[row][column] = _.cloneDeep(item);
     });
   });
   return newPanel;
