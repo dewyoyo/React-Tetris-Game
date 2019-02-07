@@ -271,6 +271,14 @@ const getColorCount = (panel) => (
   }, 0)
 );
 
+const escKey = ({ bgPanel, toolPanel }) => {
+  CONFIG.pause = CONFIG.pause === true ? false : true;
+  return {
+    bgPanel,
+    toolPanel
+  };
+};
+
 const spaceKey = ({ bgPanel, toolPanel }) => {
   CONFIG.pause = CONFIG.pause === true ? false : true;
   return {
@@ -324,6 +332,7 @@ const scrollDownPanel = withPauseKey(downKey);
 // key definition
 
 const keyFnList = [
+  { key: 27, fn: escKey },
   { key: 32, fn: spaceKey },
   { key: 37, fn: withPauseKey(leftKey) },
   { key: 38, fn: withPauseKey(upKey) },
@@ -464,7 +473,7 @@ savescore = data => {
               </td>
               <td>               
                 <div className="data-Info">
-                  <p>current Scores: {score}</p>
+                  <p>Current Scores: {score}</p>
 
                   {this.state.loggedIn ? <p>Highst Score: {this.state.highstScore}</p> : ""}
                   {this.state.loggedIn ? <button onClick={() => this.savescore({username:this.state.username, highstScore:score})} color="#45a049">Save Score</button> : ""}
@@ -473,11 +482,11 @@ savescore = data => {
                 
                 <div className="data-instruction">
                   <p>Start game: Space bar</p>
-                  <p>Pause     : Space bar</p>
-                  <p>Move left : ← </p>
-                  <p>Move right: →</p>
+                  <p>Pause &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    : Space bar</p>
+                  <p>Move left&nbsp;&nbsp; : ← </p>
+                  <p>Move right&nbsp;: →</p>
                   <p>Move down : ↓ </p>
-                  <p>rotate    : ↻ </p>
+                  <p>rotate ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   : ↑ </p>
                 </div>       
                 
               </td>
