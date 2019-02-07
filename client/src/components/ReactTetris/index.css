@@ -6,17 +6,17 @@ body{
   font-family: 'Josefin Sans', sans-serif;
   margin: auto;
   position: relative;
-  padding : 0 2rem;
+  /* padding : 0 2rem; */
   }
   
   .App {
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
-    /* margin: auto; */
-    float: right;
+    margin: auto;
+    /* float: right; */
     width: calc(20px * 12 + 1px);
-    padding: 100px yellow;
+    /* padding: 100px yellow; */
   }
   
   .App .block {
@@ -25,13 +25,13 @@ body{
     font-size: 1em;
     height: 20px;
     line-height: 20px;
-    text-align: center;
+    /* text-align: center; */
     width: 20px;
-    padding: 5px stripe;
+    /* padding: 5px stripe; */
   
   }
 
-  .td{
+  /* .td{
     width: 5rem;
     vertical-align: top;
     padding: 0;
@@ -40,22 +40,25 @@ body{
   h3 {
     vertical-align: top;
     padding: 0;
+  } */
+  .game-plate {
+    margin: auto;
   }
   .data-Info{
     width: 20rem;
     font-size: 1.5rem;
-    vertical-align: top;
+    /* vertical-align: top; */
     padding: 0 2rem;
     color: yellowgreen;
   }
   .data-instruction {
     width: 20rem;
     font-size: 1.1rem;
-    vertical-align: top;
+    /* vertical-align: top; */
     padding: 0 2rem;
     color: white;
   }
 
   .button {
-    width: 30%;
+    /* width: 30%; */
   }
