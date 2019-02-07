@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './Signup.css';
 
+
 class Signup extends Component {
     state = {
         validUsername: false,
@@ -77,6 +78,8 @@ class Signup extends Component {
                         // valid={this.state.validUsername}
                         autoFocus
                         required
+                        minlength="8" maxlength="20"
+                        
                     />
                     <p>Password: {this.state.password}</p>
                     <h5 className="password-warning">Password should have at least 8 characters, 1 capital & 1 number</h5>
@@ -87,8 +90,10 @@ class Signup extends Component {
                         value={this.props.password}
                         onChange={this.props.handleInputChange}
                         required
+                        minlength="8" maxlength="20"
+                        // pattern="abcdefghijklmnop"
                         // valid={this.state.validPassword}
-                        pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
+                        // pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
                     />
                     <p>Confirm Password: {this.state.password}</p>
                     <input
@@ -98,8 +103,9 @@ class Signup extends Component {
                         value={this.props.confirmPassword}
                         onChange={this.props.handleInputChange}
                         required
+                        minlength="8" maxlength="20"
                         // valid={this.state.confirmPassword}
-                        pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
+                        // pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
                     />
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
