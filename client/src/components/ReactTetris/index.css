@@ -1,35 +1,28 @@
 body{
   background-image: url("../../Img/starrynight.gif");
-  /* background-repeat: repeat; */
+  background-repeat: repeat;
 }
 .container {
   font-family: 'Josefin Sans', sans-serif;
   margin: auto;
   position: relative;
   padding : 0 2rem;
-
-  /* width: 30rem; */
-    /* color: yellowgreen; */
   }
   
   .App {
     align-items: flex-start;
-    /* background: white; */
     display: flex;
     flex-wrap: wrap;
     /* margin: auto; */
     float: right;
     width: calc(20px * 12 + 1px);
     padding: 100px yellow;
-    /* width : 50%; */
   }
   
   .App .block {
-    /* border-radius:2px; */
     border: 1px solid darkgray;
     box-sizing: border-box;
     font-size: 1em;
-    /* font-weight: bold; */
     height: 20px;
     line-height: 20px;
     text-align: center;
@@ -37,36 +30,6 @@ body{
     padding: 5px stripe;
   
   }
-
-
-  .nextTool {
-    align-items: flex-start;
-    /* background: white; */
-    display: flex;
-    flex-wrap: wrap;
-    /* margin: auto; */
-    float: right;
-    width: calc(20px * 7 + 1px);
-    padding: 100px yellow;
-    /* width : 50%; */
-  }
-  
-  .nextTool .block {
-    /* border-radius:2px; */
-    border: 1px solid darkgray;
-    box-sizing: border-box;
-    font-size: 1em;
-    font-weight: bold;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    width: 20px;
-    padding: 5px stripe;
-  
-  }
-
-
-
 
   .td{
     width: 5rem;
@@ -75,14 +38,12 @@ body{
   }
 
   h3 {
-    /* width: 5rem; */
     vertical-align: top;
     padding: 0;
   }
   .data-Info{
     width: 20rem;
     font-size: 1.5rem;
-    /* text-align: auto; */
     vertical-align: top;
     padding: 0 2rem;
     color: yellowgreen;
@@ -90,8 +51,11 @@ body{
   .data-instruction {
     width: 20rem;
     font-size: 1.1rem;
-    /* text-align: auto; */
     vertical-align: top;
     padding: 0 2rem;
     color: white;
+  }
+
+  .button {
+    width: 30%;
   }

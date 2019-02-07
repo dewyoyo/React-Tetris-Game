@@ -55,7 +55,6 @@ router.get("/unauthorized", function(req, res, next) {
     });
   }, 100);
     
-  
 });
 
 // /api/users/profile
@@ -69,12 +68,14 @@ router.get("/profile", authMiddleware.isLoggedIn, function(req, res, next) {
 
 // /api/users/savescore
 // if the user is logged in, this route sends the user information to the front end
-router.post("/savescore", authMiddleware.logoutUser, function(req, res, next) {
-  res.json("User logged out successfully");
+router.post("/savescore", authMiddleware.isLoggedIn, function(req, res, next) {
+
+  db.User.findOneAndUpdate({username: req.body.username}, {highstScore: req.body.highstScore})
+    .then((updatedDoc) => {
+      res.json(updatedDoc);
+    });
+
 });
-
-
-
 
 // /api/users/logout
 // logs out the user

@@ -9,7 +9,6 @@
 }
 
 .navbar   a.titleFont {
-    /* font-family: 'Prosto One', cursive; */
     color: #F5F5F5;
     width: 21rem;
     float: left;
@@ -22,7 +21,6 @@
 }
 
 .navbar a.nav-link {
-    /* font-size: 1.2em; */
     width: 20rem;
     float: right;
     margin: 20px 5px;
@@ -38,4 +36,9 @@
     color: #F5F5F5;
     float: right;
     margin: 1rem;
+}
+
+.navbar-brand :hover {
+    color: #F5F5F5;
+    font-weight: bold;
 }

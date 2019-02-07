@@ -6,8 +6,6 @@ import './index.css';
 import API from "../../utils/API";
 
 // configuration
-let score = 0;
-
 const CONFIG = {
   rows: 17,
   columns: 12,
@@ -58,7 +56,7 @@ const isOnTheRightEdge = (panel) => {
 
 const isOverlapItem = (bg, tool) => ((isNotBlank(bg) && isNotBlank(tool)) ? true : false);
 const isOverlap = (bgPanel, toolPanel) => {
-  return _.some(
+  return _.some( 
     _.zipWith(
       convert1DimAry(bgPanel),
       convert1DimAry(toolPanel),
@@ -125,7 +123,7 @@ const rotateRegion = (area, panel) => {
   _.range(area.startRow, area.endRow + 1).forEach((row) => {
     _.range(area.startColumn, area.endColumn + 1).forEach((column) => {
       const item = toAry.shift();
-      const nop = _.isUndefined(newPanel[row]) || _.isUndefined(newPanel[row][column]) ? '' : newPanel[row][column] = _.cloneDeep(item);
+      // const nop = _.isUndefined(newPanel[row]) || _.isUndefined(newPanel[row][column]) ? '' : newPanel[row][column] = _.cloneDeep(item);
     });
   });
   return newPanel;
@@ -141,35 +139,35 @@ const rotatePanel = (panel, moreSize = 2) => {
     ))
   ));
 
-  const area = zeroPoints.length === 0
-    ? {
-      startRow: 0,
-      startColumn: 0,
-      endRow: 0,
-      endColumn: 0
-    }
-    : _.reduce(zeroPoints, (keep, zeroPoint) => {
-      return {
-        startRow: Math.min(keep.startRow, zeroPoint.row),
-        startColumn: Math.min(keep.startColumn, zeroPoint.column),
-        endRow: Math.max(keep.endRow, zeroPoint.row),
-        endColumn: Math.max(keep.endColumn, zeroPoint.column)
-      };
-    }, {
-        startRow: 100,
-        startColumn: 100,
-        endRow: -1,
-        endColumn: -1
-      });
+	const area = (zeroPoints.length === 0)
+		? {
+		startRow: 0,
+		startColumn: 0,
+		endRow: 0,
+		endColumn: 0
+		}
+		: _.reduce(zeroPoints, (keep, zeroPoint) => {
+		return {
+			startRow: Math.min(keep.startRow, zeroPoint.row),
+			startColumn: Math.min(keep.startColumn, zeroPoint.column),
+			endRow: Math.max(keep.endRow, zeroPoint.row),
+			endColumn: Math.max(keep.endColumn, zeroPoint.column)
+		};
+		}, {
+			startRow: 100,
+			startColumn: 100,
+			endRow: -1,
+			endColumn: -1
+		});
 
-  const newArea = zeroPoints.length === 1 ? {
-    startRow: _.first(zeroPoints).row - moreSize,
-    startColumn: _.first(zeroPoints).column - moreSize,
-    endRow: _.first(zeroPoints).row + moreSize,
-    endColumn: _.first(zeroPoints).column + moreSize
-  } : _.clone(area);
+	const newArea = zeroPoints.length === 1 ? {
+		startRow: _.first(zeroPoints).row - moreSize,
+		startColumn: _.first(zeroPoints).column - moreSize,
+		endRow: _.first(zeroPoints).row + moreSize,
+		endColumn: _.first(zeroPoints).column + moreSize
+	} : _.clone(area);
 
-  return rotateRegion(newArea, panel);
+	return rotateRegion(newArea, panel);
 };
 
 // paint on panel
@@ -314,8 +312,6 @@ const downKey = ({ bgPanel, toolPanel }) => {
   const newBgPanel = overlap ? assignPanel({ bgPanel, toolPanel }) : bgPanel;
   const newToolPanel = overlap ? createRandomToolPanel(panelList, newBgPanel) : downPanel(toolPanel);
 
-
-  // console.log(assignPanel({ bgPanel, toolPanel }));
   return {
     bgPanel: removeFullRow(newBgPanel),
     toolPanel: newToolPanel
@@ -344,7 +340,7 @@ const processKey = (key, panels) => (
 const isValidKey = (key) => (_.some(keyFnList, (item) => (item.key === key)));
 
 // remove row on panel
-
+let score = 0;
 const addEmptyRow = panel => {
   const newPanel = _.cloneDeep(panel);
   const count = CONFIG.rows - newPanel.length;
@@ -352,14 +348,7 @@ const addEmptyRow = panel => {
   newPanel.unshift(...getEmptyRows(count));
   _.last(_.last(newPanel)).count = CONFIG.count;
 
-  //================ hjlee totalscore===
-  // console.log("addEmptyRow count: " + count);
-  // this.setState({
-  //   totalScore: this.state.totalScore + count
-  // });
-  // console.log("totalScore" + this.state.totalScore);
-  //================ hjlee totalscore===
-  score += (count + count) * 100;
+  score += (count * count) * 100;
 
   return newPanel;
 };
@@ -378,7 +367,7 @@ const createBlocks = ary => (
   ary.map(
     (item, index) => (
       <Block color={item.color} key={index}>
-        {/* {item.count} */}
+
       </Block>
     )
   )
@@ -401,7 +390,7 @@ export default class App extends Component {
       toolPanel: createRandomToolPanel(panelList),
       username: "",
       loggedIn: false,
-      totalScore: 0,
+      highstScore: 0,
       gameOver: false
     };
 
@@ -417,7 +406,6 @@ export default class App extends Component {
     keyboard.keyPressed(e => {
       setTimeout(() => {
         this.setState((state) => {
-          // console.log(state);
           return isValidKey(e.which)
             ? processKey(e.which, {
               bgPanel: state.bgPanel,
@@ -437,7 +425,8 @@ export default class App extends Component {
         if (user.data.loggedIn) {
             this.setState({
                 loggedIn: true,
-                username: user.data.user.username
+                username: user.data.user.username,
+                highstScore: user.data.user.highstScore
             });
         }
     }).catch(err => {
@@ -446,6 +435,16 @@ export default class App extends Component {
 }
 
 
+savescore = data => {
+  console.log(data);
+
+  API.savescore( data )
+    .then(data => {
+    // this.setState({highstScore:data.highstScore});
+    console.log(data);
+    
+  }).catch(err => console.log(err)); 
+}
 
   render() {
     return (
@@ -454,7 +453,6 @@ export default class App extends Component {
         <table className="game-plate">
           <tbody>
             <tr>
-
               <td>
                 <div className="App">
 
@@ -464,27 +462,23 @@ export default class App extends Component {
                   })} />
                 </div>
               </td>
-              <td>
-                
+              <td>               
                 <div className="data-Info">
-                  <p>Scores: {score}</p>
-                  <p>Next: </p>
-                  <p>{this.state.username}</p>
-                </div>
+                  <p>current Scores: {score}</p>
 
-                
+                  {this.state.loggedIn ? <p>Highst Score: {this.state.highstScore}</p> : ""}
+                  {this.state.loggedIn ? <button onClick={() => this.savescore({username:this.state.username, highstScore:score})} color="#45a049">Save Score</button> : ""}
+                  
+                </div>            
                 
                 <div className="data-instruction">
                   <p>Start game: Space bar</p>
                   <p>Pause     : Space bar</p>
-                  <p>Move left : leftKey </p>
-                  <p>Move right: rightKey</p>
-                  <p>Move down : downKey </p>
-                  <p>rotate    : upKey </p>
-
-                </div>
-
-              
+                  <p>Move left : ← </p>
+                  <p>Move right: →</p>
+                  <p>Move down : ↓ </p>
+                  <p>rotate    : ↻ </p>
+                </div>       
                 
               </td>
               
@@ -492,24 +486,7 @@ export default class App extends Component {
           </tbody>
         </table>
 
-        
-
-        {/* <div className="data-Info">
-          <h3>Scores: {score}</h3>
-          <h3>Next: </h3>
-        </div>
-
-        <div className="App">
-
-          <Blocks window={getWindow({
-            bgPanel: this.state.bgPanel,
-            toolPanel: this.state.toolPanel
-          })} />
-        </div> */}
-
       </div>
     );
   }
 }
-
-// export default App;

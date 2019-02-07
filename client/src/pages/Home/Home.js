@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactTetris from '../../components/ReactTetris'
 import API from "../../utils/API";
-
 import "./Home.css";
 
 class Home extends Component {
@@ -14,8 +13,6 @@ class Home extends Component {
   componentDidMount() {
     this.loggedIn();
   }
-
-
 
   loggedIn = () => {
     API.isLoggedIn().then(user => {
@@ -33,7 +30,6 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-
         <ReactTetris
           username={this.state.username}
           loggedIn={this.state.loggedIn}
