@@ -56,7 +56,7 @@ const isOnTheRightEdge = (panel) => {
 
 const isOverlapItem = (bg, tool) => ((isNotBlank(bg) && isNotBlank(tool)) ? true : false);
 const isOverlap = (bgPanel, toolPanel) => {
-  return _.some( 
+  return _.some(
     _.zipWith(
       convert1DimAry(bgPanel),
       convert1DimAry(toolPanel),
@@ -139,35 +139,35 @@ const rotatePanel = (panel, moreSize = 2) => {
     ))
   ));
 
-	const area = (zeroPoints.length === 0)
-		? {
-		startRow: 0,
-		startColumn: 0,
-		endRow: 0,
-		endColumn: 0
-		}
-		: _.reduce(zeroPoints, (keep, zeroPoint) => {
-		return {
-			startRow: Math.min(keep.startRow, zeroPoint.row),
-			startColumn: Math.min(keep.startColumn, zeroPoint.column),
-			endRow: Math.max(keep.endRow, zeroPoint.row),
-			endColumn: Math.max(keep.endColumn, zeroPoint.column)
-		};
-		}, {
-			startRow: 100,
-			startColumn: 100,
-			endRow: -1,
-			endColumn: -1
-		});
+  const area = (zeroPoints.length === 0)
+    ? {
+      startRow: 0,
+      startColumn: 0,
+      endRow: 0,
+      endColumn: 0
+    }
+    : _.reduce(zeroPoints, (keep, zeroPoint) => {
+      return {
+        startRow: Math.min(keep.startRow, zeroPoint.row),
+        startColumn: Math.min(keep.startColumn, zeroPoint.column),
+        endRow: Math.max(keep.endRow, zeroPoint.row),
+        endColumn: Math.max(keep.endColumn, zeroPoint.column)
+      };
+    }, {
+        startRow: 100,
+        startColumn: 100,
+        endRow: -1,
+        endColumn: -1
+      });
 
-	const newArea = zeroPoints.length === 1 ? {
-		startRow: _.first(zeroPoints).row - moreSize,
-		startColumn: _.first(zeroPoints).column - moreSize,
-		endRow: _.first(zeroPoints).row + moreSize,
-		endColumn: _.first(zeroPoints).column + moreSize
-	} : _.clone(area);
+  const newArea = zeroPoints.length === 1 ? {
+    startRow: _.first(zeroPoints).row - moreSize,
+    startColumn: _.first(zeroPoints).column - moreSize,
+    endRow: _.first(zeroPoints).row + moreSize,
+    endColumn: _.first(zeroPoints).column + moreSize
+  } : _.clone(area);
 
-	return rotateRegion(newArea, panel);
+  return rotateRegion(newArea, panel);
 };
 
 // paint on panel
@@ -391,7 +391,7 @@ const Blocks = props => (createBlocks(props.window));
 
 
 export default class App extends Component {
-// class App extends Component {
+  // class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -428,37 +428,43 @@ export default class App extends Component {
 
 
   componentDidMount() {
-    processKey(32,{});
+    processKey(32, {});
     API.isLoggedIn().then(user => {
-        // console.log(user);
-        if (user.data.loggedIn) {
-            this.setState({
-                loggedIn: true,
-                username: user.data.user.username,
-                highstScore: user.data.user.highstScore
-            });
-        }
+      // console.log(user);
+      if (user.data.loggedIn) {
+        this.setState({
+          loggedIn: true,
+          username: user.data.user.username,
+          highstScore: user.data.user.highstScore
+        });
+      }
     }).catch(err => {
-        console.log(err);
+      console.log(err);
     });
-}
+  }
 
 
-savescore = data => {
-  console.log(data);
-
-  API.savescore( data )
-    .then(data => {
-    // this.setState({highstScore:data.highstScore});
+  savescore = data => {
     console.log(data);
     
-  }).catch(err => console.log(err)); 
-}
+    if (data.highstScore >= this.state.highstScore) {
+      this.setState({ highstScore: data.highstScore });
+      API.savescore(data)
+        .then(res => {
+          console.log(res);
+
+        }).catch(err => console.log(err));
+    }
+    else {
+      
+    }
+
+  }
 
   render() {
     return (
       <div className="container">
-
+        {/* <p className="data-message">{scoreMsg}</p> */}
         <table className="game-plate">
           <tbody>
             <tr>
@@ -471,15 +477,15 @@ savescore = data => {
                   })} />
                 </div>
               </td>
-              <td>               
+              <td>
                 <div className="data-Info">
                   <p>Current Scores: {score}</p>
 
                   {this.state.loggedIn ? <p>Highst Score: {this.state.highstScore}</p> : ""}
-                  {this.state.loggedIn ? <button onClick={() => this.savescore({username:this.state.username, highstScore:score})} color="#45a049">Save Score</button> : ""}
-                  
-                </div>            
-                
+                  {this.state.loggedIn ? <button onClick={() => this.savescore({ username: this.state.username, highstScore: score })} color="#45a049">Save Score</button> : ""}
+
+                </div>
+
                 <div className="data-instruction">
                   <p>Start game: Space bar</p>
                   <p>Pause &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    : Space bar</p>
@@ -487,10 +493,10 @@ savescore = data => {
                   <p>Move right&nbsp;: →</p>
                   <p>Move down : ↓ </p>
                   <p>rotate ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   : ↑ </p>
-                </div>       
-                
+                </div>
+
               </td>
-              
+
             </tr>
           </tbody>
         </table>
